@@ -1,11 +1,13 @@
-import { useRef } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FiPhone, FiCheckCircle, FiArrowRight } from 'react-icons/fi'
 import { FaWhatsapp, FaStar, FaAward, FaShieldHalved, FaUserDoctor } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import { useBooking } from '../../context/BookingContext'
+import { getStats } from '../../services/statsService'
 
-const stats = [
+// Fallback stats (shown while loading)
+const FALLBACK_STATS = [
   { value: '10K+', label: 'Happy Patients', color: '#60A5FA' },
   { value: '150+', label: 'Professionals',  color: '#34D399' },
   { value: '4.9★', label: 'Avg Rating',     color: '#FCD34D' },
@@ -130,6 +132,26 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y       = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
+  
+  // Dynamic stats
+  const [stats, setStats] = useState(FALLBACK_STATS)
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    // Fetch dynamic stats on component mount
+    async function loadStats() {
+      try {
+        const dynamicStats = await getStats()
+        setStats(dynamicStats)
+      } catch (error) {
+        console.error('Failed to load stats:', error)
+        // Keep fallback stats on error
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    loadStats()
+  }, [])
 
   return (
     <section ref={ref} className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden" aria-label="Welcome to Curexhealth">
