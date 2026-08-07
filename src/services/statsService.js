@@ -14,6 +14,8 @@
 // ─── CONFIGURATION ────────────────────────────────────────────────────────────
 
 // Mode: 'firebase' | 'simulated' | 'static'
+// IMPORTANT: Set to 'simulated' until Firebase is configured
+// Firebase mode requires src/config/firebase.js to exist
 const STATS_MODE = 'simulated' // Change to 'firebase' after setting up Firebase
 
 // Starting values (used for simulated mode)
