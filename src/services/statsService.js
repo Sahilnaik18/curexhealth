@@ -103,9 +103,24 @@ function formatStatValue(value, type) {
  */
 async function fetchFirebaseStats() {
   try {
+    // Check if Firebase config exists
+    let firebaseModule
+    try {
+      firebaseModule = await import('../config/firebase')
+    } catch (err) {
+      console.warn('Firebase config not found. Create src/config/firebase.js to enable Firebase mode.')
+      console.warn('See FIREBASE_STATS_SETUP.md for setup instructions.')
+      return calculateSimulatedStats()
+    }
+
     // Dynamically import Firebase only if needed
     const { getFirestore, doc, getDoc } = await import('firebase/firestore')
-    const { db } = await import('../config/firebase') // You'll create this file
+    const { db } = firebaseModule
+
+    if (!db) {
+      console.warn('Firebase not initialized properly')
+      return calculateSimulatedStats()
+    }
 
     const statsRef = doc(db, 'stats', 'global')
     const statsSnap = await getDoc(statsRef)
@@ -208,8 +223,17 @@ export async function incrementBookingCount() {
   }
 
   try {
+    // Check if Firebase config exists
+    let firebaseModule
+    try {
+      firebaseModule = await import('../config/firebase')
+    } catch (err) {
+      console.error('Firebase config not found')
+      return
+    }
+
     const { getFirestore, doc, updateDoc, increment } = await import('firebase/firestore')
-    const { db } = await import('../config/firebase')
+    const { db } = firebaseModule
 
     const statsRef = doc(db, 'stats', 'global')
     await updateDoc(statsRef, {
@@ -237,8 +261,17 @@ export async function addRating(rating) {
   }
 
   try {
+    // Check if Firebase config exists
+    let firebaseModule
+    try {
+      firebaseModule = await import('../config/firebase')
+    } catch (err) {
+      console.error('Firebase config not found')
+      return
+    }
+
     const { getFirestore, doc, updateDoc, increment } = await import('firebase/firestore')
-    const { db } = await import('../config/firebase')
+    const { db } = firebaseModule
 
     const statsRef = doc(db, 'stats', 'global')
     await updateDoc(statsRef, {
@@ -262,8 +295,17 @@ export async function updateStatsConfig(updates) {
   }
 
   try {
+    // Check if Firebase config exists
+    let firebaseModule
+    try {
+      firebaseModule = await import('../config/firebase')
+    } catch (err) {
+      console.error('Firebase config not found')
+      return
+    }
+
     const { getFirestore, doc, updateDoc } = await import('firebase/firestore')
-    const { db } = await import('../config/firebase')
+    const { db } = firebaseModule
 
     const statsRef = doc(db, 'stats', 'global')
     await updateDoc(statsRef, {
@@ -289,8 +331,8 @@ export function getStatsMode() {
  */
 export async function isFirebaseConfigured() {
   try {
-    const { db } = await import('../config/firebase')
-    return db !== null
+    const firebaseModule = await import('../config/firebase')
+    return firebaseModule.db !== null && firebaseModule.db !== undefined
   } catch {
     return false
   }
