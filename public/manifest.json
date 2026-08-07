@@ -1,0 +1,51 @@
+{
+  "name": "Curexhealth – Home Healthcare Mumbai",
+  "short_name": "Curexhealth",
+  "description": "Premium home healthcare services in Mumbai — physiotherapy, nursing, elder care & rehabilitation at your doorstep.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0F6CBD",
+  "orientation": "portrait-primary",
+  "lang": "en-IN",
+  "categories": [
+    "health",
+    "medical"
+  ],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Book Home Visit",
+      "short_name": "Book",
+      "description": "Book a home healthcare visit",
+      "url": "/contact",
+      "icons": [
+        {
+          "src": "/favicon.svg",
+          "sizes": "any"
+        }
+      ]
+    },
+    {
+      "name": "Home Physiotherapy",
+      "short_name": "Physio",
+      "description": "Certified physiotherapy at home",
+      "url": "/services/home-physiotherapy",
+      "icons": [
+        {
+          "src": "/favicon.svg",
+          "sizes": "any"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}

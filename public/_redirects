@@ -1,0 +1,7 @@
+# Netlify SPA redirects — route all paths to index.html
+# Legacy URL redirects
+/privacy                    /privacy-policy               301
+/terms                      /terms-and-conditions         301
+
+# SPA catch-all (must be last)
+/*                          /index.html                   200
