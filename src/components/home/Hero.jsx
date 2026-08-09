@@ -1,18 +1,9 @@
-import { useRef, useState, useEffect } from 'react'
+import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { FiPhone, FiCheckCircle, FiArrowRight } from 'react-icons/fi'
-import { FaWhatsapp, FaStar, FaAward, FaShieldHalved, FaUserDoctor } from 'react-icons/fa6'
+import { FaWhatsapp, FaStar, FaAward } from 'react-icons/fa6'
 import { Link } from 'react-router-dom'
 import { useBooking } from '../../context/BookingContext'
-import { getStats } from '../../services/statsService'
-
-// Fallback stats (shown while loading)
-const FALLBACK_STATS = [
-  { value: '10K+', label: 'Happy Patients', color: '#60A5FA' },
-  { value: '150+', label: 'Professionals',  color: '#34D399' },
-  { value: '4.9★', label: 'Avg Rating',     color: '#FCD34D' },
-  { value: '50+',  label: 'Areas Served',   color: '#F87171' },
-]
 
 const trust = ['Verified Professionals','Same-day Service','100% Satisfaction']
 
@@ -132,59 +123,32 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
   const y       = useTransform(scrollYProgress, [0, 1], ['0%', '25%'])
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
-  
-  // Dynamic stats
-  const [stats, setStats] = useState(FALLBACK_STATS)
-  const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    // Fetch dynamic stats on component mount
-    async function loadStats() {
-      try {
-        const dynamicStats = await getStats()
-        setStats(dynamicStats)
-      } catch (error) {
-        console.error('Failed to load stats:', error)
-        // Keep fallback stats on error
-      } finally {
-        setIsLoading(false)
-      }
-    }
-    loadStats()
-  }, [])
 
   return (
-    <section ref={ref} className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden" aria-label="Welcome to Curexhealth">
-      {/* Parallax background */}
+    <section ref={ref} className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden bg-gradient-to-br from-blue-50 via-white to-green-50" aria-label="Welcome to Curexhealth">
+      {/* Light, healthcare-themed background */}
       <motion.div style={{ y }} className="absolute inset-0 pointer-events-none" aria-hidden="true">
-        <div className="absolute inset-0" style={{ background: 'linear-gradient(160deg, #020D1A 0%, #041A2E 45%, #020D1A 100%)' }} />
-        {/* Colour orbs — reduced motion fallback in CSS */}
+        {/* Soft healthcare colors - blues and greens */}
         <motion.div
-          animate={{ scale: [1, 1.15, 1], opacity: [0.35, 0.55, 0.35] }}
+          animate={{ scale: [1, 1.08, 1], opacity: [0.15, 0.25, 0.15] }}
           transition={{ duration: 9, repeat: Infinity, ease: 'easeInOut' }}
           className="absolute -top-32 -left-32 w-[600px] h-[600px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(15,108,189,0.4) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(59, 130, 246, 0.2) 0%, transparent 70%)' }}
         />
         <motion.div
-          animate={{ scale: [1, 1.12, 1], opacity: [0.2, 0.38, 0.2] }}
+          animate={{ scale: [1, 1.12, 1], opacity: [0.1, 0.2, 0.1] }}
           transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut', delay: 3 }}
           className="absolute -bottom-40 -right-32 w-[700px] h-[700px] rounded-full"
-          style={{ background: 'radial-gradient(circle, rgba(0,184,148,0.28) 0%, transparent 70%)' }}
+          style={{ background: 'radial-gradient(circle, rgba(16, 185, 129, 0.15) 0%, transparent 70%)' }}
         />
-        <div className="absolute inset-0 dot-grid-white opacity-[0.35]" />
-        {/* Diagonal beams */}
-        <div className="absolute top-0 left-1/4 w-px h-full opacity-[0.07]"
-          style={{ background: 'linear-gradient(to bottom, transparent, rgba(96,165,250,0.9), transparent)' }} />
-        <div className="absolute top-0 right-1/3 w-px h-full opacity-[0.04]"
-          style={{ background: 'linear-gradient(to bottom, transparent, rgba(52,211,153,0.9), transparent)' }} />
-        {/* Floating crosses — only 3 for perf */}
+        {/* Subtle medical cross patterns */}
         {[{ x:'9%',y:'18%',s:18,d:0 },{ x:'87%',y:'14%',s:14,d:1.5 },{ x:'76%',y:'72%',s:16,d:3 }].map((c,i) => (
           <motion.div key={i}
-            animate={{ y: [-10, 10, -10], opacity: [0.1, 0.4, 0.1] }}
+            animate={{ y: [-10, 10, -10], opacity: [0.05, 0.15, 0.05] }}
             transition={{ duration: 6+i, repeat: Infinity, ease: 'easeInOut', delay: c.d }}
             className="absolute" style={{ left: c.x, top: c.y }}>
             <svg width={c.s} height={c.s} viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3v18M3 12h18" stroke="rgba(96,165,250,0.65)" strokeWidth="2.5" strokeLinecap="round"/>
+              <path d="M12 3v18M3 12h18" stroke="rgba(59, 130, 246, 0.3)" strokeWidth="2.5" strokeLinecap="round"/>
             </svg>
           </motion.div>
         ))}
@@ -201,11 +165,10 @@ export default function Hero() {
               initial={{ opacity: 0, y: -16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6 sm:mb-7"
-              style={{ background: 'rgba(15,108,189,0.18)', border: '1px solid rgba(96,165,250,0.35)' }}
+              className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full mb-6 sm:mb-7 bg-blue-100 border border-blue-200"
             >
-              <span className="w-2 h-2 rounded-full bg-[#34D399] animate-pulse flex-shrink-0" aria-hidden="true" />
-              <span className="text-[#93C5FD] font-semibold text-xs sm:text-sm">Mumbai's #1 Premium Home Healthcare</span>
+              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse flex-shrink-0" aria-hidden="true" />
+              <span className="text-blue-700 font-semibold text-xs sm:text-sm">Mumbai's #1 Premium Home Healthcare</span>
             </motion.div>
 
             {/* Headline */}
@@ -213,13 +176,13 @@ export default function Hero() {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="text-[2.6rem] sm:text-5xl lg:text-[3.8rem] xl:text-[4.2rem] font-extrabold text-white leading-[1.06] mb-5 sm:mb-6 font-display"
+              className="text-[2.6rem] sm:text-5xl lg:text-[3.8rem] xl:text-[4.2rem] font-extrabold text-gray-900 leading-[1.06] mb-5 sm:mb-6 font-display"
             >
               Expert Care,
               <br />
-              <span className="gradient-text-hero">Delivered Home</span>
+              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">Delivered Home</span>
               <br />
-              <span className="text-white/90">in Mumbai</span>
+              <span className="text-gray-800">in Mumbai</span>
             </motion.h1>
 
             {/* Subheadline */}
@@ -227,7 +190,7 @@ export default function Hero() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25 }}
-              className="text-white/65 text-base sm:text-lg lg:text-xl leading-relaxed mb-7 sm:mb-8 max-w-lg"
+              className="text-gray-600 text-base sm:text-lg lg:text-xl leading-relaxed mb-7 sm:mb-8 max-w-lg"
             >
               Certified physiotherapists, nurses, and healthcare specialists visit you at home.
               World-class medical care — without the hospital hassle.
@@ -241,8 +204,8 @@ export default function Hero() {
               className="flex flex-wrap gap-x-4 gap-y-2 mb-7 sm:mb-8"
             >
               {trust.map(t => (
-                <div key={t} className="flex items-center gap-1.5 text-white/65 text-sm font-medium">
-                  <FiCheckCircle size={14} className="text-[#34D399] flex-shrink-0" aria-hidden="true" />
+                <div key={t} className="flex items-center gap-1.5 text-gray-700 text-sm font-medium">
+                  <FiCheckCircle size={14} className="text-green-600 flex-shrink-0" aria-hidden="true" />
                   {t}
                 </div>
               ))}
@@ -344,41 +307,15 @@ export default function Hero() {
           </motion.div>
         </div>
 
-        {/* ── Stats row ─────────────────────────────── */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.7 }}
-          className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mt-8 lg:mt-10"
-          role="list"
-          aria-label="Key statistics"
-        >
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              whileHover={{ y: -3, scale: 1.02 }}
-              className="rounded-2xl px-4 py-4 text-center transition-all duration-200 cursor-default"
-              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.09)' }}
-              role="listitem"
-            >
-              <p className="font-extrabold text-2xl sm:text-3xl font-display mb-0.5 counter-value" style={{ color: s.color }}>
-                {s.value}
-              </p>
-              <p className="text-white/45 text-xs sm:text-sm font-medium">{s.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
         {/* ── Services quick strip ──────────────────── */}
         <motion.div
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9 }}
-          className="mt-4 sm:mt-5 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 flex flex-wrap gap-1.5 sm:gap-2 items-center"
-          style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}
+          transition={{ delay: 0.7 }}
+          className="mt-8 lg:mt-10 rounded-2xl px-4 sm:px-5 py-3 sm:py-3.5 flex flex-wrap gap-1.5 sm:gap-2 items-center bg-white/80 backdrop-blur-sm border border-gray-200 shadow-sm"
           aria-label="Quick links to our services"
         >
-          <span className="text-white/30 text-xs font-bold uppercase tracking-widest hidden sm:block mr-1">
+          <span className="text-gray-500 text-xs font-bold uppercase tracking-widest hidden sm:block mr-1">
             Services:
           </span>
           {[
@@ -393,7 +330,7 @@ export default function Hero() {
             <Link
               key={to}
               to={to}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-white/55 text-xs font-semibold hover:bg-white/10 hover:text-white transition-all duration-150"
+              className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-gray-600 text-xs font-semibold hover:bg-blue-50 hover:text-blue-700 transition-all duration-150"
             >
               <span aria-hidden="true">{e}</span>
               <span>{n}</span>
@@ -404,8 +341,7 @@ export default function Hero() {
 
       {/* Bottom fade */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none"
-        style={{ background: 'linear-gradient(to bottom, transparent, #0a0f1a 90%)' }}
+        className="absolute bottom-0 left-0 right-0 h-20 pointer-events-none bg-gradient-to-t from-white via-white/50 to-transparent"
         aria-hidden="true"
       />
     </section>
