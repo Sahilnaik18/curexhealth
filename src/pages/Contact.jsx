@@ -15,8 +15,8 @@ const fadeUp = {
 }
 
 const contactCards = [
-  { icon: <FiPhone size={20} />, label: 'Call Us', value: '+91 98765 43210', sub: 'Mon–Sun, 8 AM – 8 PM', href: 'tel:+918762697832', color: '#0F6CBD', bg: '#E8F3FC' },
-  { icon: <FaWhatsapp size={20} />, label: 'WhatsApp', value: 'Chat Instantly', sub: 'Fastest response', href: 'https://wa.me/918762697832', color: '#25D366', bg: '#E8F8EF' },
+  { icon: <FiPhone size={20} />, label: 'Call Us', value: '+91 9535659295', sub: 'Mon–Sun, 8 AM – 8 PM', href: 'tel:+919535659295', color: '#0F6CBD', bg: '#E8F3FC' },
+  { icon: <FaWhatsapp size={20} />, label: 'WhatsApp', value: 'Chat Instantly', sub: 'Fastest response', href: 'https://wa.me/919535659295', color: '#25D366', bg: '#E8F8EF' },
   { icon: <FiMail size={20} />, label: 'Email', value: 'care@curexhealth.com', sub: 'Reply within 4 hours', href: 'mailto:care@curexhealth.com', color: '#E17055', bg: '#FDF0EC' },
   { icon: <FiClock size={20} />, label: 'Working Hours', value: 'Mon–Sun, 8 AM – 8 PM', sub: 'Including public holidays', href: null, color: '#5B4FCF', bg: '#EEF0FD' },
 ]
@@ -253,10 +253,10 @@ export default function Contact() {
                 <h3 className="font-bold text-xl mb-2" >Prefer to talk directly?</h3>
                 <p className="text-white/80 text-sm mb-5">Our care coordinators are ready — Mon to Sun, 8 AM to 8 PM.</p>
                 <div className="flex flex-col gap-3">
-                  <a href="tel:+918762697832" className="flex items-center gap-3 bg-white text-[#0F6CBD] font-bold px-4 py-3 rounded-xl hover:bg-white/95 transition-colors text-sm">
-                    <FiPhone size={17} /> +91 98765 43210
+                  <a href="tel:+919535659295" className="flex items-center gap-3 bg-white text-[#0F6CBD] font-bold px-4 py-3 rounded-xl hover:bg-white/95 transition-colors text-sm">
+                    <FiPhone size={17} /> +91 9535659295
                   </a>
-                  <a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+                  <a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
                     className="flex items-center gap-3 bg-[#25D366] text-white font-bold px-4 py-3 rounded-xl hover:opacity-90 transition-opacity text-sm">
                     <FaWhatsapp size={18} /> Chat on WhatsApp
                   </a>

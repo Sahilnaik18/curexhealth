@@ -59,7 +59,7 @@ export default function Footer() {
             </Link>
             <div className="flex flex-col gap-3 mb-6">
               {[
-                { icon:<FiPhone size={13}/>, text:'+91 98765 43210', href:'tel:+918762697832' },
+                { icon:<FiPhone size={13}/>, text:'+91 9535659295', href:'tel:+919535659295' },
                 { icon:<FiMail size={13}/>, text:'care@curexhealth.com', href:'mailto:care@curexhealth.com' },
                 { icon:<FiMapPin size={13}/>, text:'Mumbai, Maharashtra, India', href:null },
               ].map(c => (

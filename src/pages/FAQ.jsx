@@ -23,7 +23,7 @@ const faqCategories = [
     category: 'Booking & Payment',
     icon: '📅',
     faqs: [
-      { q: 'How do I book a home healthcare service?', a: 'You can book in 3 easy ways: (1) Call our helpline at +91 98765 43210, (2) WhatsApp us, or (3) Fill the booking form on our website. Our coordinator will confirm your appointment within 15 minutes.' },
+      { q: 'How do I book a home healthcare service?', a: 'You can book in 3 easy ways: (1) Call our helpline at +91 9535659295, (2) WhatsApp us, or (3) Fill the booking form on our website. Our coordinator will confirm your appointment within 15 minutes.' },
       { q: 'What are your payment options?', a: 'We accept UPI, bank transfer, credit/debit cards, and cash. Payment can be made after the session is completed for most services. For nursing care packages, advance payment may be required.' },
       { q: 'Do you accept health insurance?', a: 'We work with several major insurance providers and TPAs. We assist with documentation required for insurance claims. Please contact our team with your insurance details for specific coverage information.' },
       { q: 'Is there a cancellation fee?', a: 'You can cancel or reschedule up to 4 hours before your appointment at no charge. Cancellations within 4 hours may incur a nominal cancellation fee. Please refer to our Cancellation Policy for full details.' },

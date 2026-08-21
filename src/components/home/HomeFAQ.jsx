@@ -87,12 +87,12 @@ export default function HomeFAQ() {
                   <p className="font-extrabold text-lg mb-1.5 font-display">Still have questions?</p>
                   <p className="text-white/75 text-sm mb-5">Our care coordinators are here to help — 7 days a week, 8 AM to 8 PM.</p>
                   <div className="flex flex-col gap-2.5">
-                    <a href="tel:+918762697832"
+                    <a href="tel:+919535659295"
                       className="flex items-center gap-2.5 bg-white font-bold px-4 py-2.5 rounded-xl text-sm hover:bg-white/95 transition-colors"
                       style={{ color:'#0F6CBD' }}>
-                      <FiPhone size={15}/> +91 98765 43210
+                      <FiPhone size={15}/> +91 9535659295
                     </a>
-                    <a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+                    <a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
                       className="flex items-center gap-2.5 bg-white/15 border border-white/30 text-white font-bold px-4 py-2.5 rounded-xl text-sm hover:bg-white/25 transition-colors">
                       <FaWhatsapp size={15}/> Chat on WhatsApp
                     </a>

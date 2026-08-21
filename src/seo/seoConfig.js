@@ -67,7 +67,7 @@ export const PAGE_SEO = {
   },
   contact: {
     title: 'Book Home Healthcare Visit in Mumbai – Contact Curexhealth',
-    description: 'Book a home healthcare visit in Mumbai. Call +91 98765 43210, WhatsApp, or fill our form — confirmed within 30 minutes. Physiotherapy, nursing, elder care & more.',
+    description: 'Book a home healthcare visit in Mumbai. Call +91 9535659295, WhatsApp, or fill our form — confirmed within 30 minutes. Physiotherapy, nursing, elder care & more.',
     keywords: 'book home physiotherapy Mumbai, home healthcare booking Mumbai, home nurse Mumbai contact',
     canonical: '/contact',
   },

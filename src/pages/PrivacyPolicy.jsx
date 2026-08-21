@@ -84,7 +84,7 @@ const sections = [
     content: [
       'If you have any questions, concerns, or requests regarding this Privacy Policy or our data practices, please contact us:',
       '**Email:** privacy@curexhealth.com',
-      '**Phone:** +91 98765 43210',
+      '**Phone:** +91 9535659295',
       '**Address:** Curexhealth, Mumbai, Maharashtra, India',
     ],
   },

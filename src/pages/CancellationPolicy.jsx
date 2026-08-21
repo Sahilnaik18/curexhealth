@@ -39,8 +39,8 @@ const sections = [
     title: '1. How to Cancel or Reschedule',
     content: [
       'To cancel or reschedule your appointment, contact us through any of the following channels:',
-      '— Call us at +91 98765 43210',
-      '— WhatsApp us at +91 98765 43210',
+      '— Call us at +91 9535659295',
+      '— WhatsApp us at +91 9535659295',
       '— Email us at care@curexhealth.com',
       'Please provide your name, booking reference (if available), and the reason for cancellation or rescheduling. Cancellations must be explicitly confirmed by our team — simply not being available does not constitute a cancellation.',
     ],
@@ -85,7 +85,7 @@ const sections = [
     title: '6. Contact for Cancellations',
     content: [
       'For all cancellations, rescheduling, and refund queries, please reach out to:',
-      '**Phone / WhatsApp:** +91 98765 43210',
+      '**Phone / WhatsApp:** +91 9535659295',
       '**Email:** care@curexhealth.com',
       '**Hours:** Monday to Sunday, 8 AM to 8 PM',
     ],
