@@ -81,7 +81,7 @@ export default function App() {
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
       <Navbar />
-      <main id="main-content" className="flex-1" role="main">
+      <main id="main-content" className="flex-1 pt-16" role="main">
         <AnimatedRoutes />
       </main>
       <Footer />

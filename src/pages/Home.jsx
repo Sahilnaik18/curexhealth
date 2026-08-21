@@ -3,15 +3,10 @@ import { PAGE_SEO } from '../seo/seoConfig'
 import { localBusinessSchema, websiteSchema, reviewSchema, faqSchema, breadcrumbSchema } from '../seo/schemas'
 import { faqs } from '../data/faqs'
 import Hero from '../components/home/Hero'
-import TrustedBy from '../components/home/TrustedBy'
 import Services from '../components/home/Services'
-import WhyChoose from '../components/home/WhyChoose'
+import TrustedBy from '../components/home/TrustedBy'
 import HowItWorks from '../components/home/HowItWorks'
-import Conditions from '../components/home/Conditions'
 import Testimonials from '../components/home/Testimonials'
-import AreasWeServe from '../components/home/AreasWeServe'
-import HomeFAQ from '../components/home/HomeFAQ'
-import FinalCTA from '../components/home/FinalCTA'
 
 const seo = PAGE_SEO.home
 
@@ -33,15 +28,10 @@ export default function Home() {
         ]}
       />
       <Hero />
-      <TrustedBy />
       <Services />
-      <WhyChoose />
+      <TrustedBy />
       <HowItWorks />
-      <Conditions />
       <Testimonials />
-      <AreasWeServe />
-      <HomeFAQ />
-      <FinalCTA />
     </>
   )
 }

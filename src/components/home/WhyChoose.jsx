@@ -41,20 +41,6 @@ export default function WhyChoose() {
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* Animated stat bar at top */}
-        <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
-          {bigStats.map((s,i) => (
-            <motion.div key={s.label} whileHover={{ y:-4, scale:1.03 }}
-              className="rounded-2xl px-5 py-5 text-center transition-all duration-200"
-              style={{ background:'rgba(255,255,255,0.05)', border:'1px solid rgba(255,255,255,0.08)', backdropFilter:'blur(10px)' }}>
-              <AnimatedCounter to={s.to} suffix={s.suffix} decimals={s.decimals||0} color={s.color}
-                className="font-extrabold text-4xl font-display counter-value block mb-1" />
-              <p className="text-white/45 text-sm font-medium">{s.label}</p>
-            </motion.div>
-          ))}
-        </motion.div>
-
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 sm:gap-12 lg:gap-16 items-center">
           {/* Left */}
           <div>
@@ -89,16 +75,6 @@ export default function WhyChoose() {
                 </motion.div>
               ))}
             </div>
-
-            <motion.div initial={{ opacity:0, y:16 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:0.4 }}
-              className="mt-8 flex items-center gap-4 p-4 rounded-2xl"
-              style={{ background:'rgba(0,184,148,0.1)', border:'1px solid rgba(0,184,148,0.25)' }}>
-              <span className="text-3xl flex-shrink-0">💯</span>
-              <div>
-                <p className="text-white font-bold text-sm font-display">100% Satisfaction Guarantee</p>
-                <p className="text-white/45 text-xs">Not satisfied? We replace the professional or refund — no questions asked.</p>
-              </div>
-            </motion.div>
           </div>
 
           {/* Right: glass cards grid */}
@@ -122,30 +98,6 @@ export default function WhyChoose() {
                 <p className="text-white/40 text-xs leading-relaxed">{f.desc}</p>
               </motion.div>
             ))}
-
-            {/* CTA glass card */}
-            <motion.div initial={{ opacity:0, y:24 }} whileInView={{ opacity:1, y:0 }} viewport={{ once:true }} transition={{ delay:0.32 }}
-              className="col-span-2 rounded-2xl p-5 relative overflow-hidden"
-              style={{ background:'linear-gradient(135deg,#0F6CBD,#00B894)', boxShadow:'0 8px 32px rgba(15,108,189,0.4)' }}>
-              <div className="absolute inset-0 pointer-events-none" style={{ backgroundImage:'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)', backgroundSize:'20px 20px' }} aria-hidden="true" />
-              <div className="relative flex items-center justify-between flex-wrap gap-4">
-                <div>
-                  <p className="text-white font-extrabold text-lg mb-1 font-display">Ready to experience the difference?</p>
-                  <div className="flex flex-wrap gap-x-4 gap-y-1">
-                    {['Same-day booking','Certified professionals','50+ areas'].map(t => (
-                      <div key={t} className="flex items-center gap-1.5 text-white/75 text-xs">
-                        <FiCheckCircle size={11} /> {t}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <button onClick={openBooking}
-                  className="flex-shrink-0 bg-white font-bold text-sm px-5 py-2.5 rounded-xl hover:bg-white/90 transition-colors shadow-lg"
-                  style={{ color:'#0F6CBD' }}>
-                  Book Now →
-                </button>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
       </div>

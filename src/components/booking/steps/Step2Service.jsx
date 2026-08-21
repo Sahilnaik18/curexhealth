@@ -1,5 +1,5 @@
 import { FiFileText } from 'react-icons/fi'
-import { FormField, Input, Select } from '../FormField'
+import { FormField } from '../FormField'
 
 const services = [
   { value: 'home-physiotherapy', label: '🏃 Home Physiotherapy', desc: 'Certified physio at your home' },
@@ -9,13 +9,8 @@ const services = [
   { value: 'stroke-rehabilitation', label: '🧠 Stroke Rehabilitation', desc: 'Neurological rehab at home' },
   { value: 'sports-injury-rehabilitation', label: '🏅 Sports Injury Rehabilitation', desc: 'Sport-specific recovery' },
   { value: 'orthopedic-rehabilitation', label: '🦴 Orthopedic Rehabilitation', desc: 'Bone & joint rehab' },
+  { value: 'womens-health-care', label: '🤱 Women\'s Health Care', desc: 'Postnatal & pregnancy care' },
   { value: 'other', label: '💬 Other / Not Sure', desc: "We'll guide you to the right service" },
-]
-
-const genderOptions = [
-  { value: 'male', label: 'Male' },
-  { value: 'female', label: 'Female' },
-  { value: 'other', label: 'Other / Prefer not to say' },
 ]
 
 export default function Step2Service({ data, errors, update }) {
@@ -27,10 +22,10 @@ export default function Step2Service({ data, errors, update }) {
             <FiFileText size={16} className="text-[#00B894]" />
           </div>
           <h3 className="text-[#0F172A] font-extrabold text-xl" style={{ fontFamily: 'Manrope, sans-serif' }}>
-            Service & Patient Details
+            Select Service
           </h3>
         </div>
-        <p className="text-[#64748B] text-sm ml-10">Select the service and tell us about the patient.</p>
+        <p className="text-[#64748B] text-sm ml-10">Choose the healthcare service you need.</p>
       </div>
 
       <div className="flex flex-col gap-5">
@@ -72,43 +67,6 @@ export default function Step2Service({ data, errors, update }) {
           </div>
           {errors.service && <p role="alert" className="text-red-500 text-xs flex items-center gap-1 mt-1"><span>⚠</span> {errors.service}</p>}
         </FormField>
-
-        {/* Age + Gender row */}
-        <div className="grid grid-cols-2 gap-4">
-          <FormField label="Patient Age" required error={errors.patientAge}>
-            <div className="relative">
-              <Input
-                type="number"
-                name="patientAge"
-                value={data.patientAge}
-                onChange={e => update({ patientAge: e.target.value })}
-                placeholder="Age in years"
-                min={1}
-                max={120}
-                required
-                aria-required="true"
-                error={errors.patientAge}
-              />
-              <span className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[#94A3B8] text-xs font-medium">yrs</span>
-            </div>
-          </FormField>
-
-          <FormField label="Gender" required error={errors.gender}>
-            <Select
-              name="gender"
-              value={data.gender}
-              onChange={e => update({ gender: e.target.value })}
-              required
-              aria-required="true"
-              error={errors.gender}
-            >
-              <option value="">Select gender</option>
-              {genderOptions.map(g => (
-                <option key={g.value} value={g.value}>{g.label}</option>
-              ))}
-            </Select>
-          </FormField>
-        </div>
       </div>
 
       {/* Info note */}

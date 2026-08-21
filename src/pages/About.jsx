@@ -27,13 +27,12 @@ const values = [
 ]
 
 const milestones = [
-  { year: '2019', title: 'Founded in Mumbai', desc: 'Started with 5 certified physiotherapists and one mission: bring premium home healthcare to Mumbai.' },
-  { year: '2020', title: 'Nursing & Diagnostics Added', desc: 'Expanded to certified nursing care and home diagnostic services during a critical year for healthcare accessibility.' },
-  { year: '2021', title: '2,000 Patients — 20 Areas', desc: 'Crossed 2,000 patients served, expanded to 20+ Mumbai areas, onboarded 50+ verified professionals.' },
-  { year: '2022', title: 'Elder Care & Stroke Rehab', desc: 'Launched comprehensive elder care and specialised stroke rehabilitation programmes serving hundreds of seniors.' },
-  { year: '2023', title: '10,000 Patients — 50 Areas', desc: 'Achieved 10,000+ happy patients milestone and expanded our network across the full Mumbai metro region.' },
-  { year: '2024', title: 'NABH Recognition', desc: 'Received NABH recognition for our quality processes — validating our commitment to clinical excellence.' },
-  { year: '2025', title: 'Sports & Orthopedic Rehab', desc: 'Added specialised sports injury and orthopedic rehabilitation programmes. 150+ professionals across all services.' },
+  { year: '2025', title: 'Curexhealth Launches', desc: 'Starting with certified physiotherapists, nurses, and healthcare specialists bringing premium care to homes across Mumbai.' },
+  { year: 'Q2 2025', title: 'Expand Service Areas', desc: 'Growing our coverage to reach 20+ key areas in Mumbai with comprehensive home healthcare services.' },
+  { year: 'Q3 2025', title: 'Specialized Programs', desc: 'Adding elder care, stroke rehabilitation, and sports injury recovery programs to our service portfolio.' },
+  { year: 'Q4 2025', title: 'Technology Integration', desc: 'Launching patient app for seamless booking, digital health records, and real-time professional tracking.' },
+  { year: '2026', title: 'NABH Recognition', desc: 'Working towards NABH accreditation to validate our commitment to clinical excellence and quality processes.' },
+  { year: 'Future', title: 'Mumbai-Wide Coverage', desc: 'Our vision: Making premium home healthcare accessible to every neighborhood across Greater Mumbai.' },
 ]
 
 const accreditations = [
@@ -66,7 +65,7 @@ export default function About() {
       <PageHero
         badge="🌟 About Curexhealth"
         title="Redefining Home Healthcare"
-        highlight="in Mumbai Since 2019"
+        highlight="in Mumbai"
         subtitle="Born from a simple belief — that premium, compassionate healthcare should come to you. On a mission to make world-class medical care accessible to every home in Mumbai."
         dark
       />
@@ -110,10 +109,10 @@ export default function About() {
                 <span className="block text-[#0F6CBD]">Directly to You</span>
               </h2>
               <p className="text-[#475569] text-lg leading-relaxed mb-5">
-                Curexhealth was founded in 2019 with a clear vision: to make premium, certified healthcare accessible to every home in Mumbai — without the chaos of hospitals or the compromise on quality.
+                Curexhealth was founded with a clear vision: to make premium, certified healthcare accessible to every home in Mumbai — without the chaos of hospitals or the compromise on quality.
               </p>
               <p className="text-[#475569] text-lg leading-relaxed mb-8">
-                We started with physiotherapy and have grown into Mumbai's most trusted full-spectrum home healthcare company — serving 10,000+ patients with 150+ verified professionals across 50+ areas.
+                We're building Mumbai's most trusted full-spectrum home healthcare company — connecting patients with verified professionals across 50+ areas for physiotherapy, nursing care, elder care, and specialized rehabilitation services.
               </p>
               <div className="flex flex-col gap-3 mb-8">
                 {[
@@ -327,7 +326,7 @@ export default function About() {
               Experience the Curexhealth Difference
             </h2>
             <p className="text-white/80 text-lg mb-8">
-              Join 10,000+ Mumbai families who have chosen premium home healthcare.
+              Join families across Mumbai who are choosing premium home healthcare.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button

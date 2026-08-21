@@ -1,0 +1,86 @@
+═══════════════════════════════════════════════════════════════
+  📊 GOOGLE SHEETS SETUP - QUICK START GUIDE
+═══════════════════════════════════════════════════════════════
+
+✅ YOUR BOOKING FORM IS READY!
+Now let's connect it to Google Sheets to collect data.
+
+═══════════════════════════════════════════════════════════════
+  📖 FULL GUIDE
+═══════════════════════════════════════════════════════════════
+
+Open this file for step-by-step instructions:
+→ SETUP_GOOGLE_SHEETS_NOW.md
+
+═══════════════════════════════════════════════════════════════
+  ⚡ SUPER QUICK OVERVIEW (5 minutes)
+═══════════════════════════════════════════════════════════════
+
+1. CREATE GOOGLE SHEET
+   → sheets.google.com
+   → New sheet: "Curexhealth Bookings"
+   → Add headers (see guide)
+
+2. ADD APPS SCRIPT
+   → Extensions → Apps Script
+   → Paste script (from guide)
+   → Save
+
+3. DEPLOY WEB APP
+   → Deploy → New deployment → Web app
+   → Execute as: Me
+   → Who has access: Anyone ⚠️
+   → Copy URL
+
+4. ADD TO PROJECT
+   → Create .env file
+   → Add: VITE_GOOGLE_SHEETS_URL=your_url
+   → Save
+
+5. RESTART & TEST
+   → Stop server (Ctrl+C)
+   → npm run dev
+   → Test booking on website
+   → Check Google Sheet for data 🎉
+
+═══════════════════════════════════════════════════════════════
+  📋 WHAT YOU NEED
+═══════════════════════════════════════════════════════════════
+
+✓ Google account
+✓ 5 minutes of time
+✓ Follow SETUP_GOOGLE_SHEETS_NOW.md
+
+═══════════════════════════════════════════════════════════════
+  📊 WHAT YOU'LL GET
+═══════════════════════════════════════════════════════════════
+
+✅ All bookings saved to Google Sheets automatically
+✅ View/edit/manage bookings anytime
+✅ Export to Excel
+✅ Share with team
+✅ 100% FREE - No backend needed!
+
+═══════════════════════════════════════════════════════════════
+  📁 FILES TO READ
+═══════════════════════════════════════════════════════════════
+
+1. SETUP_GOOGLE_SHEETS_NOW.md ← START HERE (detailed guide)
+2. CHECKLIST.md (track your progress)
+3. GOOGLE_SHEETS_SETUP.md (complete reference)
+
+═══════════════════════════════════════════════════════════════
+  🚀 READY TO START?
+═══════════════════════════════════════════════════════════════
+
+Open: SETUP_GOOGLE_SHEETS_NOW.md
+Follow the steps
+You'll be done in 5 minutes!
+
+═══════════════════════════════════════════════════════════════
+  💬 NEED HELP?
+═══════════════════════════════════════════════════════════════
+
+Just let me know which step you're on and I'll help you!
+
+═══════════════════════════════════════════════════════════════

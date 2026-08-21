@@ -7,7 +7,7 @@ import Step2Service from './steps/Step2Service'
 import Step3Details from './steps/Step3Details'
 import Step4Review from './steps/Step4Review'
 import SuccessScreen from './SuccessScreen'
-import { sendBookingEmail, isEmailConfigured } from '../../services/emailService'
+import { sendToGoogleSheets, isSheetsConfigured } from '../../services/googleSheetsService'
 
 const STEPS = [
   { id: 1, label: 'Personal Info', icon: <FiUser size={15} /> },
@@ -23,7 +23,7 @@ const INITIAL_DATA = {
   preferredDate: '', preferredTime: '', notes: '',
 }
 
-export default function BookingModal({ isOpen, onClose }) {
+export default function BookingModal({ isOpen, onClose, preSelectedService }) {
   const [step, setStep]               = useState(1)
   const [formData, setFormData]       = useState(INITIAL_DATA)
   const [errors, setErrors]           = useState({})
@@ -38,14 +38,39 @@ export default function BookingModal({ isOpen, onClose }) {
     return () => { document.body.style.overflow = '' }
   }, [isOpen])
 
-  // Reset on open
+  // Reset on open and set pre-selected service
   useEffect(() => {
     if (isOpen) {
-      setStep(1); setFormData(INITIAL_DATA)
-      setErrors({}); setSubmitted(false)
-      setSubmitting(false); setEmailError(null)
+      // Map service title to service value
+      let serviceValue = ''
+      if (preSelectedService) {
+        // Create mapping based on slug patterns
+        const titleToSlug = {
+          'Home Physiotherapy': 'home-physiotherapy',
+          'Nursing Care': 'nursing-care',
+          'Elder Care': 'elder-care',
+          'Post Surgery Rehab': 'post-surgery-rehabilitation',
+          'Stroke Rehabilitation': 'stroke-rehabilitation',
+          'Sports Injury Rehab': 'sports-injury-rehabilitation',
+          'Orthopedic Rehab': 'orthopedic-rehabilitation',
+          'Women\'s Health Care': 'womens-health-care'
+        }
+        
+        serviceValue = titleToSlug[preSelectedService] || ''
+      }
+      
+      setStep(1)
+      const newFormData = {
+        ...INITIAL_DATA,
+        service: serviceValue
+      }
+      setFormData(newFormData)
+      setErrors({})
+      setSubmitted(false)
+      setSubmitting(false)
+      setEmailError(null)
     }
-  }, [isOpen])
+  }, [isOpen, preSelectedService])
 
   // Escape key
   useEffect(() => {
@@ -77,12 +102,12 @@ export default function BookingModal({ isOpen, onClose }) {
       else if (!/^[6-9]\d{9}$/.test(formData.mobile.replace(/\s/g, ''))) e.mobile = 'Enter a valid 10-digit Indian mobile number'
       if (!formData.sameAsPhone && formData.whatsapp && !/^[6-9]\d{9}$/.test(formData.whatsapp.replace(/\s/g, ''))) e.whatsapp = 'Enter a valid WhatsApp number'
       if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) e.email = 'Enter a valid email address'
-    }
-    if (s === 2) {
-      if (!formData.service) e.service = 'Please select a service'
       if (!formData.patientAge) e.patientAge = 'Patient age is required'
       else if (isNaN(formData.patientAge) || +formData.patientAge < 1 || +formData.patientAge > 120) e.patientAge = 'Enter a valid age (1–120)'
       if (!formData.gender) e.gender = 'Please select gender'
+    }
+    if (s === 2) {
+      if (!formData.service) e.service = 'Please select a service'
     }
     if (s === 3) {
       if (!formData.condition.trim()) e.condition = 'Please describe the medical condition'
@@ -99,24 +124,43 @@ export default function BookingModal({ isOpen, onClose }) {
   const next = () => {
     const e = validate(step)
     if (Object.keys(e).length) { setErrors(e); return }
-    setErrors({}); setStep(s => s + 1)
+    setErrors({})
+    
+    // Skip Step 2 if service is already selected (from service card click)
+    if (step === 1 && formData.service) {
+      setStep(3) // Go directly to Step 3 (Details)
+    } else {
+      setStep(s => s + 1)
+    }
   }
 
-  const back = () => { setErrors({}); setStep(s => s - 1) }
+  const back = () => { 
+    setErrors({})
+    
+    // Skip Step 2 when going back if service was pre-selected
+    if (step === 3 && formData.service && preSelectedService) {
+      setStep(1) // Go back to Step 1, skip Step 2
+    } else {
+      setStep(s => s - 1)
+    }
+  }
 
   const submit = async () => {
     setSubmitting(true)
     setEmailError(null)
     try {
-      if (isEmailConfigured()) {
-        const result = await sendBookingEmail(formData)
+      // Send booking data to Google Sheets
+      if (isSheetsConfigured()) {
+        const result = await sendToGoogleSheets(formData)
         if (!result.success) {
-          // Email failed but we still show success to user —
-          // booking data is captured; staff can check form submissions
-          console.warn('Email send failed:', result.error)
+          console.warn('Google Sheets submission failed:', result.error)
+          // Still show success to user - they can contact via WhatsApp
         }
+      } else {
+        console.warn('Google Sheets not configured yet')
+        // Still show success - bookings can be handled via WhatsApp/Phone
       }
-      // Always mark as submitted — don't block user on email failure
+      // Always mark as submitted - user experience is smooth
       setSubmitted(true)
     } catch (err) {
       console.error('Submit error:', err)
@@ -126,7 +170,25 @@ export default function BookingModal({ isOpen, onClose }) {
     }
   }
 
-  const progress = ((step - 1) / (STEPS.length - 1)) * 100
+  // Calculate actual step number accounting for skipped Step 2
+  const getActualStepNumber = () => {
+    if (formData.service && preSelectedService) {
+      // Step 2 is skipped
+      if (step === 1) return 1
+      if (step === 3) return 2
+      if (step === 4) return 3
+    }
+    return step
+  }
+
+  // Calculate total steps accounting for skipped Step 2
+  const getTotalSteps = () => {
+    return (formData.service && preSelectedService) ? 3 : 4
+  }
+
+  const actualStep = getActualStepNumber()
+  const totalSteps = getTotalSteps()
+  const progress = ((actualStep - 1) / (totalSteps - 1)) * 100
   if (!isOpen && !isClosing) return null
 
   const modal = (
@@ -152,75 +214,35 @@ export default function BookingModal({ isOpen, onClose }) {
             className="fixed inset-0 z-[9999] flex items-end sm:items-center justify-center p-0 sm:p-4"
             role="dialog" aria-modal="true" aria-label="Book a home healthcare visit"
           >
-            <div className="relative w-full sm:max-w-2xl max-h-[92svh] sm:max-h-[92svh] flex flex-col rounded-t-3xl sm:rounded-3xl overflow-hidden"
-              style={{ background: 'white', boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.04)' }}
+            <div className="relative w-full sm:max-w-2xl max-h-[92svh] sm:max-h-[92svh] flex flex-col rounded-t-3xl sm:rounded-3xl overflow-hidden bg-white shadow-2xl"
               onClick={e => e.stopPropagation()}
             >
+              {/* Close button - top right */}
+              {!submitted && (
+                <button onClick={handleClose} disabled={submitting}
+                  className="absolute top-4 right-4 z-10 w-10 h-10 rounded-full flex items-center justify-center bg-[#F1F5F9] hover:bg-[#E2E8F0] text-[#64748B] hover:text-[#334155] transition-all disabled:opacity-40"
+                  aria-label="Close">
+                  <FiX size={20} />
+                </button>
+              )}
+              
               {/* Mobile drag handle */}
               <div className="sm:hidden flex justify-center pt-3 pb-1 flex-shrink-0 bg-white" aria-hidden="true">
-                <div className="w-10 h-1 rounded-full bg-[#E2E8F0]" />
+                <div className="w-10 h-1.5 rounded-full bg-[#E2E8F0]" />
               </div>
               {/* Header (hidden on success) */}
               {!submitted && (
-                <div className="relative flex-shrink-0">
-                  <div className="px-4 sm:px-7 pt-5 sm:pt-7 pb-4 sm:pb-5"
-                    style={{ background: 'linear-gradient(160deg,#020D1A 0%,#041A2E 100%)' }}>
-                    <button onClick={handleClose} disabled={submitting}
-                      className="absolute top-5 right-5 w-9 h-9 rounded-xl flex items-center justify-center hover:bg-white/10 transition-all disabled:opacity-40"
-                      style={{ color: 'rgba(255,255,255,0.6)' }} aria-label="Close">
-                      <FiX size={20} />
-                    </button>
-
-                    <div className="flex items-center gap-3 mb-5">
-                      <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
-                        style={{ background: 'rgba(15,108,189,0.3)', border: '1px solid rgba(15,108,189,0.4)' }}>
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                          <path d="M12 3L12 21M4 12L20 12" stroke="#60A5FA" strokeWidth="2.5" strokeLinecap="round"/>
-                        </svg>
-                      </div>
-                      <div>
-                        <h2 className="text-white font-extrabold text-xl leading-none font-display">Book a Home Visit</h2>
-                        <p className="text-white/50 text-xs mt-0.5">Curexhealth — Mumbai Home Healthcare</p>
-                      </div>
-                    </div>
-
-                    {/* Step indicators */}
-                    <div className="flex items-center gap-2">
-                      {STEPS.map((s, i) => (
-                        <div key={s.id} className="flex items-center gap-2 flex-1 last:flex-none">
-                          <button onClick={() => step > s.id && !submitting && setStep(s.id)}
-                            disabled={step < s.id || submitting}
-                            className={`flex items-center gap-2 transition-all duration-200 ${step > s.id && !submitting ? 'cursor-pointer' : 'cursor-default'}`}
-                            aria-label={`Step ${s.id}: ${s.label}`}>
-                            <div className={`w-8 h-8 rounded-xl flex items-center justify-center flex-shrink-0 font-bold text-xs transition-all duration-300 ${
-                              step > s.id ? 'bg-[#00B894] text-white' : step === s.id ? 'bg-[#0F6CBD] text-white' : 'bg-white/10 text-white/30'
-                            }`} style={{ boxShadow: step === s.id ? '0 2px 8px rgba(15,108,189,0.5)' : step > s.id ? '0 2px 8px rgba(0,184,148,0.5)' : 'none' }}>
-                              {step > s.id ? <FiCheck size={14} /> : s.icon}
-                            </div>
-                            <span className={`text-xs font-semibold hidden sm:block transition-colors ${step >= s.id ? 'text-white/90' : 'text-white/30'}`}>
-                              {s.label}
-                            </span>
-                          </button>
-                          {i < STEPS.length - 1 && (
-                            <div className="flex-1 h-0.5 rounded-full mx-1 bg-white/10 overflow-hidden">
-                              <motion.div className="h-full rounded-full bg-[#00B894]"
-                                animate={{ width: step > s.id ? '100%' : '0%' }}
-                                transition={{ duration: 0.4 }} />
-                            </div>
-                          )}
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Progress bar */}
-                    <div className="mt-4 h-1 rounded-full bg-white/10 overflow-hidden">
-                      <motion.div className="h-full rounded-full"
-                        style={{ background: 'linear-gradient(90deg,#0F6CBD,#00B894)' }}
-                        animate={{ width: `${progress}%` }}
-                        transition={{ duration: 0.4, ease: 'easeInOut' }} />
-                    </div>
-                    <p className="text-white/35 text-xs mt-1.5 text-right">Step {step} of {STEPS.length}</p>
+                <div className="relative flex-shrink-0 bg-white border-b border-[#F1F5F9] px-4 sm:px-7 pt-16 sm:pt-12 pb-6">
+                  {/* Progress bar at bottom of header */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#F1F5F9]">
+                    <motion.div 
+                      className="h-full bg-[#0A9C6F]"
+                      animate={{ width: `${progress}%` }}
+                      transition={{ duration: 0.4, ease: 'easeInOut' }} 
+                    />
                   </div>
+                  
+                  <p className="text-[#94A3B8] text-xs font-medium uppercase tracking-wider mb-2">Step {actualStep} of {totalSteps}</p>
                 </div>
               )}
 
@@ -250,46 +272,44 @@ export default function BookingModal({ isOpen, onClose }) {
 
               {/* Footer */}
               {!submitted && (
-                <div className="flex-shrink-0 px-4 sm:px-7 py-4 sm:py-5 border-t border-[#F1F5F9] bg-white flex items-center justify-between gap-3 sm:gap-4">
+                <div className="flex-shrink-0 px-4 sm:px-7 py-5 sm:py-6 border-t border-[#F1F5F9] bg-white flex items-center justify-between gap-4">
                   {step > 1 ? (
                     <button onClick={back} disabled={submitting}
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl border-2 border-[#E2E8F0] text-[#64748B] font-semibold text-sm hover:border-[#CBD5E1] hover:text-[#334155] transition-all disabled:opacity-40">
-                      <FiArrowLeft size={16} /> Back
+                      className="px-6 py-3.5 rounded-xl text-[#64748B] font-semibold text-sm hover:text-[#334155] hover:bg-[#F8FAFC] transition-all disabled:opacity-40">
+                      Cancel
                     </button>
                   ) : (
                     <button onClick={handleClose}
-                      className="flex items-center gap-2 px-5 py-2.5 rounded-xl text-[#94A3B8] font-semibold text-sm hover:text-[#64748B] transition-colors">
+                      className="px-6 py-3.5 rounded-xl text-[#64748B] font-semibold text-sm hover:text-[#334155] hover:bg-[#F8FAFC] transition-colors">
                       Cancel
                     </button>
                   )}
 
-                  <div className="flex items-center gap-3">
-                    <p className="text-[#94A3B8] text-xs hidden sm:block">🔒 Secure & Confidential</p>
-                    {step < 4 ? (
-                      <motion.button onClick={next} whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}
-                        className="flex items-center gap-2 px-7 py-3 rounded-2xl text-white font-bold text-sm"
-                        style={{ background: 'linear-gradient(135deg,#0F6CBD,#0e7fd4)', boxShadow: '0 4px 20px rgba(15,108,189,0.4)' }}>
-                        Continue <FiArrowRight size={16} />
-                      </motion.button>
-                    ) : (
-                      <motion.button onClick={submit} disabled={submitting}
-                        whileHover={submitting ? {} : { scale: 1.03 }}
-                        whileTap={submitting ? {} : { scale: 0.97 }}
-                        className="flex items-center gap-2 px-7 py-3 rounded-2xl text-white font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed"
-                        style={{ background: 'linear-gradient(135deg,#00B894,#009B7D)', boxShadow: '0 4px 20px rgba(0,184,148,0.45)' }}>
-                        {submitting ? (
-                          <>
-                            <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
-                              <FiLoader size={16} />
-                            </motion.span>
-                            Sending…
-                          </>
-                        ) : (
-                          <><FiCheck size={16} /> Submit Request</>
-                        )}
-                      </motion.button>
-                    )}
-                  </div>
+                  {step < 4 ? (
+                    <motion.button onClick={next} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+                      className="flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#0A9C6F] hover:bg-[#098c63] text-white font-bold text-sm shadow-lg shadow-[#0A9C6F]/25 transition-colors">
+                      Continue 
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                      </svg>
+                    </motion.button>
+                  ) : (
+                    <motion.button onClick={submit} disabled={submitting}
+                      whileHover={submitting ? {} : { scale: 1.02 }}
+                      whileTap={submitting ? {} : { scale: 0.98 }}
+                      className="flex items-center gap-2 px-8 py-3.5 rounded-xl bg-[#0A9C6F] hover:bg-[#098c63] text-white font-bold text-sm disabled:opacity-70 disabled:cursor-not-allowed shadow-lg shadow-[#0A9C6F]/25 transition-colors">
+                      {submitting ? (
+                        <>
+                          <motion.span animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
+                            <FiLoader size={16} />
+                          </motion.span>
+                          Sending…
+                        </>
+                      ) : (
+                        <>Submit Request</>
+                      )}
+                    </motion.button>
+                  )}
                 </div>
               )}
             </div>

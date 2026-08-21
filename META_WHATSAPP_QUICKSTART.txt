@@ -1,0 +1,155 @@
+═══════════════════════════════════════════════════════════════
+  📱 META WHATSAPP CLOUD API - QUICK START
+═══════════════════════════════════════════════════════════════
+
+✅ Official WhatsApp Business API
+✅ FREE (1,000 messages/month)
+✅ No backend server needed!
+
+═══════════════════════════════════════════════════════════════
+  🚀 SETUP STEPS (15 minutes)
+═══════════════════════════════════════════════════════════════
+
+□ STEP 1: Create Meta Developer Account (3 min)
+  → Go to: https://developers.facebook.com
+  → Create App → Business
+  → App name: "Curexhealth Bookings"
+
+□ STEP 2: Add WhatsApp Product (2 min)
+  → In app dashboard: Add products
+  → Find WhatsApp → Set up
+
+□ STEP 3: Get Credentials (5 min)
+  → Copy: Temporary Access Token
+  → Copy: Phone Number ID
+  → Add your WhatsApp number as recipient
+  → Verify with code
+
+□ STEP 4: Test from Meta Dashboard (2 min)
+  → Send "Hello World" test message
+  → Check your WhatsApp
+  → ✅ Message received = API working!
+
+□ STEP 5: Update Apps Script (5 min)
+  → Open: Extensions → Apps Script
+  → Replace code with: APPS_SCRIPT_META_WHATSAPP.js
+  → Update lines 2-4 with your credentials:
+    • META_ACCESS_TOKEN
+    • META_PHONE_ID
+    • RECIPIENT_PHONE
+  → Save
+
+□ STEP 6: Test from Apps Script (2 min)
+  → Select: testWhatsApp
+  → Click: Run
+  → Check WhatsApp for test message
+
+□ STEP 7: Deploy (2 min)
+  → Deploy → New deployment → Web app
+  → Copy new URL
+  → Update .env file
+  → Restart server
+
+□ STEP 8: Test End-to-End (2 min)
+  → Submit booking from website
+  → Check: Sheet + WhatsApp
+
+═══════════════════════════════════════════════════════════════
+  📄 FILES YOU NEED
+═══════════════════════════════════════════════════════════════
+
+1. META_WHATSAPP_SETUP.md
+   → Complete detailed guide
+
+2. APPS_SCRIPT_META_WHATSAPP.js
+   → Code to paste in Apps Script
+
+3. This file
+   → Quick checklist
+
+═══════════════════════════════════════════════════════════════
+  🎯 WHAT YOU GET
+═══════════════════════════════════════════════════════════════
+
+Every booking will:
+✅ Save to Google Sheet
+✅ Send WhatsApp message to your phone
+✅ Include all booking details
+✅ Work instantly
+
+Message format:
+┌─────────────────────────────────┐
+│ NEW BOOKING - CUREXHEALTH       │
+│                                 │
+│ PATIENT DETAILS                 │
+│ Name: Sahil Naik                │
+│ Age: 30 | Gender: Male          │
+│                                 │
+│ CONTACT                         │
+│ Mobile: 9876543210              │
+│ WhatsApp: 9876543210            │
+│                                 │
+│ SERVICE                         │
+│ Home Physiotherapy              │
+│                                 │
+│ APPOINTMENT                     │
+│ Date: 2025-01-25                │
+│ Time: Morning (8 AM - 12 PM)    │
+│                                 │
+│ Please confirm this booking!    │
+└─────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════
+  💰 COSTS
+═══════════════════════════════════════════════════════════════
+
+Test Mode:      FREE (1,000 messages/month)
+After Verification: FREE (1,000 messages/month)
+Beyond 1,000:   $0.005-0.02 per message
+
+Still no backend server!
+Still no hosting costs!
+
+═══════════════════════════════════════════════════════════════
+  🔐 SECURITY
+═══════════════════════════════════════════════════════════════
+
+✅ Official Meta/Facebook API
+✅ Encrypted communication
+✅ Access tokens expire (get permanent token later)
+✅ Rate limiting protection
+✅ Message delivery confirmation
+
+═══════════════════════════════════════════════════════════════
+  📚 RESOURCES
+═══════════════════════════════════════════════════════════════
+
+Meta Developers:
+→ https://developers.facebook.com
+
+WhatsApp Cloud API Docs:
+→ https://developers.facebook.com/docs/whatsapp/cloud-api
+
+Get Started Guide:
+→ https://developers.facebook.com/docs/whatsapp/cloud-api/get-started
+
+═══════════════════════════════════════════════════════════════
+  🆘 NEED HELP?
+═══════════════════════════════════════════════════════════════
+
+Stuck? Let me know:
+→ Which step you're on
+→ What error you see
+→ Screenshot if needed
+
+I'll help you get it working!
+
+═══════════════════════════════════════════════════════════════
+  🎉 READY?
+═══════════════════════════════════════════════════════════════
+
+Open: META_WHATSAPP_SETUP.md
+Follow the steps
+You'll be done in 15 minutes!
+
+═══════════════════════════════════════════════════════════════
