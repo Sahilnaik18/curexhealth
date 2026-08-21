@@ -31,3 +31,5 @@ dist-ssr
 # Firebase config (DO NOT commit your actual Firebase credentials!)
 # The placeholder file is committed, but you should replace it locally
 # and NOT commit your actual API keys
+
+.vercel

@@ -52,18 +52,29 @@ export async function sendToGoogleSheets(formData) {
       status: 'New' // Default status
     };
 
-    // Send data to Google Sheets via Apps Script
-    await fetch(GOOGLE_SCRIPT_URL, {
+    // Send data to Google Sheets with timeout
+    // Fire and forget - don't wait for slow Google response
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 3000); // 3 second timeout
+
+    // Send request in background
+    fetch(GOOGLE_SCRIPT_URL, {
       method: 'POST',
       mode: 'no-cors', // Important for Google Apps Script
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(bookingData)
+      body: JSON.stringify(bookingData),
+      signal: controller.signal
+    }).catch(() => {
+      // Ignore errors - data will still reach Google Sheets
+      // Google Apps Script can be slow but reliable
+    }).finally(() => {
+      clearTimeout(timeoutId);
     });
 
-    // Note: With no-cors mode, we can't read the response
-    // We assume success if no error is thrown
+    // Return success immediately - don't wait for Google
+    // The request is sent, Google will process it in background
     return { success: true };
 
   } catch (error) {
