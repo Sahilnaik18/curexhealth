@@ -65,7 +65,7 @@ export default function Conditions() {
         <motion.p initial={{ opacity:0 }} whileInView={{ opacity:1 }} viewport={{ once:true }} transition={{ delay:0.5 }}
           className="text-center text-[#94A3B8] text-sm mt-8">
           Don't see your condition?{' '}
-          <a href="tel:+918762697832" className="text-[#0F6CBD] font-semibold hover:underline">Call us</a>
+          <a href="tel:+919535659295" className="text-[#0F6CBD] font-semibold hover:underline">Call us</a>
           {' '}— our care team will guide you.
         </motion.p>
       </div>

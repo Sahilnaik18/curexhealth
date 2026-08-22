@@ -41,7 +41,7 @@ const sections = [
       'To cancel or reschedule your appointment, contact us through any of the following channels:',
       '— Call us at +91 9535659295',
       '— WhatsApp us at +91 9535659295',
-      '— Email us at care@curexhealth.com',
+      '— Email us at supportcurexhealth@gmail.com',
       'Please provide your name, booking reference (if available), and the reason for cancellation or rescheduling. Cancellations must be explicitly confirmed by our team — simply not being available does not constitute a cancellation.',
     ],
   },
@@ -86,7 +86,7 @@ const sections = [
     content: [
       'For all cancellations, rescheduling, and refund queries, please reach out to:',
       '**Phone / WhatsApp:** +91 9535659295',
-      '**Email:** care@curexhealth.com',
+      '**Email:** supportcurexhealth@gmail.com',
       '**Hours:** Monday to Sunday, 8 AM to 8 PM',
     ],
   },
@@ -189,11 +189,11 @@ export default function CancellationPolicy() {
               </h2>
               <p className="text-[#64748B] mb-7">Contact us immediately — we'll make it easy for you.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+918762697832"
+                <a href="tel:+919535659295"
                   className="flex items-center justify-center gap-2 bg-[#0F6CBD] text-white font-bold px-7 py-3.5 rounded-2xl shadow-lg hover:bg-[#0A5299] transition-colors">
                   <FiPhone size={18} /> Call Us
                 </a>
-                <a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold px-7 py-3.5 rounded-2xl shadow-lg hover:opacity-90 transition-opacity">
                   <FaWhatsapp size={20} /> WhatsApp
                 </a>

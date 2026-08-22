@@ -94,7 +94,7 @@ export default function NotFound() {
                 <FiHome size={18}/> Back to Home
               </motion.span>
             </Link>
-            <motion.a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+            <motion.a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
               whileHover={{ scale:1.04, y:-2 }} whileTap={{ scale:0.97 }}
               className="flex items-center justify-center gap-2 font-bold px-7 py-3.5 rounded-2xl text-base text-white transition-all"
               style={{ background:'linear-gradient(135deg,#25D366,#20bd59)', boxShadow:'0 4px 20px rgba(37,211,102,0.35)' }}>

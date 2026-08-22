@@ -3,7 +3,7 @@
  *
  * Admin Contact Information:
  * - Email: sahilnaik1515@gmail.com
- * - Phone/WhatsApp: +91 8762697832
+ * - Phone/WhatsApp: +91 9535659295
  *
  * Setup steps (one-time):
  * 1. Create a free account at https://www.emailjs.com using sahilnaik1515@gmail.com
@@ -94,7 +94,7 @@ Our care coordinator will call you shortly to:
 Please note: *Your appointment is NOT confirmed yet.* Our team will contact you to confirm.
 
 Thank you for choosing Curexhealth.
-📞 +91 8762697832
+📞 +91 9535659295
 🌐 curexhealth.com`
 }
 

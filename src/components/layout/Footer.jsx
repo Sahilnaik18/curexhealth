@@ -27,7 +27,7 @@ const legalLinks = [
 ]
 const areas = ['Bandra','Andheri','Juhu','Powai','Malad','Borivali','Thane','Navi Mumbai','Dadar','Worli','Chembur','Kurla']
 const socials = [
-  { icon: <FaWhatsapp size={16} />, href:'https://wa.me/918762697832', label:'WhatsApp', hover:'#25D366' },
+  { icon: <FaWhatsapp size={16} />, href:'https://wa.me/919535659295', label:'WhatsApp', hover:'#25D366' },
   { icon: <FaInstagram size={16} />, href:'https://instagram.com/curexhealth', label:'Instagram', hover:'#E1306C' },
   { icon: <FaFacebookF size={16} />, href:'https://facebook.com/curexhealth', label:'Facebook', hover:'#1877F2' },
   { icon: <FaLinkedinIn size={16} />, href:'https://linkedin.com/company/curexhealth', label:'LinkedIn', hover:'#0A66C2' },
@@ -60,7 +60,7 @@ export default function Footer() {
             <div className="flex flex-col gap-3 mb-6">
               {[
                 { icon:<FiPhone size={13}/>, text:'+91 9535659295', href:'tel:+919535659295' },
-                { icon:<FiMail size={13}/>, text:'care@curexhealth.com', href:'mailto:care@curexhealth.com' },
+                { icon:<FiMail size={13}/>, text:'supportcurexhealth@gmail.com', href:'mailto:supportcurexhealth@gmail.com' },
                 { icon:<FiMapPin size={13}/>, text:'Mumbai, Maharashtra, India', href:null },
               ].map(c => (
                 c.href

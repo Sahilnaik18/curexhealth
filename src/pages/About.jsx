@@ -1,13 +1,12 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
-import { FiCheckCircle, FiPhone, FiArrowRight } from 'react-icons/fi'
+import { FiPhone, FiArrowRight } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import { FaHeart, FaStar, FaLocationDot, FaShieldHalved, FaAward, FaUsers } from 'react-icons/fa6'
 import SectionHeader from '../components/common/SectionHeader'
 import { teamMembers } from '../data/team'
 import { useBooking } from '../context/BookingContext'
 import PageHero from '../components/common/PageHero'
-import AnimatedCounter from '../components/common/AnimatedCounter'
 import SEOHead from '../seo/SEOHead'
 import { PAGE_SEO } from '../seo/seoConfig'
 import { localBusinessSchema, breadcrumbSchema } from '../seo/schemas'
@@ -27,19 +26,12 @@ const values = [
 ]
 
 const milestones = [
-  { year: '2025', title: 'Curexhealth Launches', desc: 'Starting with certified physiotherapists, nurses, and healthcare specialists bringing premium care to homes across Mumbai.' },
-  { year: 'Q2 2025', title: 'Expand Service Areas', desc: 'Growing our coverage to reach 20+ key areas in Mumbai with comprehensive home healthcare services.' },
-  { year: 'Q3 2025', title: 'Specialized Programs', desc: 'Adding elder care, stroke rehabilitation, and sports injury recovery programs to our service portfolio.' },
-  { year: 'Q4 2025', title: 'Technology Integration', desc: 'Launching patient app for seamless booking, digital health records, and real-time professional tracking.' },
-  { year: '2026', title: 'NABH Recognition', desc: 'Working towards NABH accreditation to validate our commitment to clinical excellence and quality processes.' },
-  { year: 'Future', title: 'Mumbai-Wide Coverage', desc: 'Our vision: Making premium home healthcare accessible to every neighborhood across Greater Mumbai.' },
-]
-
-const accreditations = [
-  { label: 'NABH Recognised', icon: '🏆', desc: 'National Accreditation Board for Hospitals' },
-  { label: 'ISO 9001:2015', icon: '✅', desc: 'Quality Management Certified' },
-  { label: 'BPT / MPT Certified', icon: '🎓', desc: 'All physiotherapists degree-qualified' },
-  { label: '4.9★ Google Rating', icon: '⭐', desc: 'Based on 3,200+ patient reviews' },
+  { year: 'Now', title: 'Curexhealth Launches', desc: 'Starting with certified physiotherapists, nurses, and healthcare specialists bringing premium care to homes across Mumbai.' },
+  { year: 'Phase 1', title: 'Expand Service Areas', desc: 'Growing our coverage to reach key areas in Mumbai with comprehensive home healthcare services.' },
+  { year: 'Phase 2', title: 'Specialized Programs', desc: 'Adding elder care, stroke rehabilitation, and sports injury recovery programs to our service portfolio.' },
+  { year: 'Phase 3', title: 'Technology Integration', desc: 'Launching patient app for seamless booking, digital health records, and real-time professional tracking.' },
+  { year: 'Future', title: 'Quality Recognition', desc: 'Working towards accreditation to validate our commitment to clinical excellence and quality processes.' },
+  { year: 'Vision', title: 'Mumbai-Wide Coverage', desc: 'Our vision: Making premium home healthcare accessible to every neighborhood across Greater Mumbai.' },
 ]
 
 export default function About() {
@@ -70,30 +62,6 @@ export default function About() {
         dark
       />
 
-      {/* ── Stats ─────────────────────────────────────────────── */}
-      <section className="py-12 bg-white border-b border-[#F1F5F9]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5">
-            {[
-              { to: 10000, suffix:'+', label:'Patients Served',      sublabel:'Across Mumbai',        color:'#0F6CBD', bg:'#E8F3FC' },
-              { to: 150,   suffix:'+', label:'Expert Professionals',  sublabel:'Verified & certified', color:'#00B894', bg:'#E0F7F3' },
-              { to: 4.9,   suffix:'★', label:'Average Rating',        sublabel:'3,200+ reviews',       color:'#F59E0B', bg:'#FEF6E4', decimals:1 },
-              { to: 50,    suffix:'+', label:'Areas in Mumbai',        sublabel:'Growing every month',  color:'#E17055', bg:'#FDF0EC' },
-            ].map((stat, i) => (
-              <motion.div key={stat.label} custom={i} initial="hidden" whileInView="visible" viewport={{ once:true }} variants={fadeUp}
-                whileHover={{ y:-4, scale:1.02 }}
-                className="rounded-2xl p-6 text-center border border-[#E2E8F0] shadow-card transition-all duration-200"
-                style={{ backgroundColor: stat.bg }}>
-                <AnimatedCounter to={stat.to} suffix={stat.suffix} decimals={stat.decimals||0} color={stat.color}
-                  className="text-4xl font-extrabold font-display block mb-1" />
-                <p className="text-[#0F172A] font-bold text-sm mb-0.5 font-display">{stat.label}</p>
-                <p className="text-[#94A3B8] text-xs">{stat.sublabel}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── Mission & Story ───────────────────────────────────── */}
       <section className="py-16 lg:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,35 +80,8 @@ export default function About() {
                 Curexhealth was founded with a clear vision: to make premium, certified healthcare accessible to every home in Mumbai — without the chaos of hospitals or the compromise on quality.
               </p>
               <p className="text-[#475569] text-lg leading-relaxed mb-8">
-                We're building Mumbai's most trusted full-spectrum home healthcare company — connecting patients with verified professionals across 50+ areas for physiotherapy, nursing care, elder care, and specialized rehabilitation services.
+                We're building Mumbai's most trusted full-spectrum home healthcare company — connecting patients with verified professionals for physiotherapy, nursing care, elder care, and specialized rehabilitation services.
               </p>
-              <div className="flex flex-col gap-3 mb-8">
-                {[
-                  'NABH-recognised quality processes',
-                  'Rigorous 10-step professional verification',
-                  'Personalised care plans for every patient',
-                  '100% satisfaction guarantee on all services',
-                  'Available 7 days a week, 8 AM to 8 PM',
-                ].map((item) => (
-                  <div key={item} className="flex items-center gap-2.5">
-                    <FiCheckCircle size={17} className="text-[#00B894] flex-shrink-0" aria-hidden="true" />
-                    <span className="text-[#334155] font-medium text-sm">{item}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* Accreditations */}
-              <div className="grid grid-cols-2 gap-3">
-                {accreditations.map((a) => (
-                  <div key={a.label} className="flex items-center gap-3 p-3.5 rounded-xl bg-[#F8FAFC] border border-[#E2E8F0]">
-                    <span className="text-xl flex-shrink-0">{a.icon}</span>
-                    <div>
-                      <p className="text-[#0F172A] font-bold text-xs">{a.label}</p>
-                      <p className="text-[#94A3B8] text-[10px]">{a.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
             </motion.div>
 
             {/* Timeline */}
@@ -334,7 +275,7 @@ export default function About() {
                 className="flex items-center justify-center gap-2 bg-white text-[#0F6CBD] font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
                 <FiPhone size={20} /> Book Home Visit
               </button>
-              <a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-white/15 border-2 border-white text-white font-bold px-8 py-4 rounded-2xl hover:bg-white/25 transition-colors">
                 <FaWhatsapp size={22} /> WhatsApp
               </a>

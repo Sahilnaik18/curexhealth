@@ -98,11 +98,11 @@ export default function ServiceAreas() {
                 We are expanding rapidly across Mumbai. WhatsApp us your pincode and we'll confirm if we can serve you — often within minutes.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-[#25D366] text-white font-bold px-7 py-3.5 rounded-2xl shadow-lg hover:opacity-90 transition-opacity">
                   <FaWhatsapp size={20} /> Check Your Pincode
                 </a>
-                <a href="tel:+918762697832"
+                <a href="tel:+919535659295"
                   className="flex items-center justify-center gap-2 bg-[#0F6CBD] text-white font-bold px-7 py-3.5 rounded-2xl shadow-lg hover:bg-[#0A5299] transition-colors">
                   <FiPhone size={18} /> Call Us
                 </a>

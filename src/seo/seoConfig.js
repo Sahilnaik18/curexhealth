@@ -7,9 +7,9 @@ export const SITE = {
   name: 'Curexhealth',
   tagline: 'Premium Home Healthcare in Mumbai',
   url: 'https://curexhealth.com',
-  email: 'care@curexhealth.com',
-  phone: '+918762697832',
-  phoneDisplay: '+91 8762697832',
+  email: 'supportcurexhealth@gmail.com',
+  phone: '+919535659295',
+  phoneDisplay: '+91 9535659295',
   address: {
     street: 'Mumbai',
     city: 'Mumbai',

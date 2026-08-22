@@ -133,7 +133,7 @@ export default function AreasWeServe() {
             <p className="text-[#64748B] text-sm mt-0.5">WhatsApp us your pincode — we confirm coverage in minutes.</p>
           </div>
           <div className="flex gap-3 flex-shrink-0">
-            <a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+            <a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 text-white font-bold px-5 py-2.5 rounded-xl text-sm hover:opacity-90 transition-opacity"
               style={{ background:'linear-gradient(135deg,#25D366,#20bd59)', boxShadow:'0 4px 16px rgba(37,211,102,0.35)' }}>
               <FaWhatsapp size={16}/> Check My Area

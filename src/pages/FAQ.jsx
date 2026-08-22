@@ -193,11 +193,11 @@ export default function FAQ() {
                 Our care coordinators are here to help — 7 days a week, 8 AM to 8 PM.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="tel:+918762697832"
+                <a href="tel:+919535659295"
                   className="flex items-center justify-center gap-2 bg-white text-[#0F6CBD] font-bold px-7 py-3.5 rounded-2xl shadow-lg hover:shadow-xl transition-shadow">
                   <FiPhone size={18} /> Call Us Now
                 </a>
-                <a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
                   className="flex items-center justify-center gap-2 bg-white/15 border-2 border-white text-white font-bold px-7 py-3.5 rounded-2xl hover:bg-white/25 transition-colors">
                   <FaWhatsapp size={20} /> WhatsApp
                 </a>

@@ -60,7 +60,7 @@ const sections = [
       '— Report any concerns regarding patient safety promptly',
       '— Maintain appropriate professional boundaries',
       '— Adhere to all infection control and safety protocols',
-      'Complaints regarding professional conduct should be reported to our care team immediately at care@curexhealth.com.',
+      'Complaints regarding professional conduct should be reported to our care team immediately at supportcurexhealth@gmail.com.',
     ],
   },
   {

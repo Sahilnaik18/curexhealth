@@ -71,7 +71,7 @@ export default function ServicePageTemplate({  seoTitle,
                 <FiPhone size={20} /> Book This Service
               </motion.button>
               <motion.a
-                href="https://wa.me/918762697832"
+                href="https://wa.me/919535659295"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.04, y: -2 }}
@@ -318,7 +318,7 @@ export default function ServicePageTemplate({  seoTitle,
                 className="flex items-center justify-center gap-2 bg-white text-[#0F6CBD] font-bold px-8 py-4 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-lg">
                 <FiPhone size={20} /> Book Home Visit
               </button>
-              <a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
                 className="flex items-center justify-center gap-2 bg-white/15 border-2 border-white text-white font-bold px-8 py-4 rounded-2xl hover:bg-white/25 transition-colors text-lg">
                 <FaWhatsapp size={22} /> WhatsApp
               </a>

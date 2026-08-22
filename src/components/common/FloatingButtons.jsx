@@ -110,7 +110,7 @@ export default function FloatingButtons() {
               </AnimatePresence>
 
               <motion.a
-                href="https://wa.me/918762697832"
+                href="https://wa.me/919535659295"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.1 }}

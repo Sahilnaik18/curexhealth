@@ -104,7 +104,7 @@ export default function HowItWorks() {
             className="btn-primary text-lg px-8 py-4 rounded-2xl">
             <FiPhone size={20} /> Book in 60 Seconds
           </motion.button>
-          <motion.a href="https://wa.me/918762697832" target="_blank" rel="noopener noreferrer"
+          <motion.a href="https://wa.me/919535659295" target="_blank" rel="noopener noreferrer"
             whileHover={{ scale:1.04, y:-3 }} whileTap={{ scale:0.97 }}
             className="flex items-center justify-center gap-2.5 font-bold px-8 py-4 rounded-2xl text-lg text-white transition-all"
             style={{ background:'linear-gradient(135deg,#25D366,#20bd59)', boxShadow:'0 8px 32px rgba(37,211,102,0.35)' }}>

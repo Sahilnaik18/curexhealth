@@ -8,7 +8,7 @@ const badges = [
   { icon: <FaUserCheck size={28} />, title: 'Verified Professionals', desc: 'Background checks, credentials & clinical assessment', stat: 'Top 10%', statLabel: 'Accepted', color: '#F97316', bgCard: 'bg-white' },
 ]
 
-const certifications = ['IMA Member','FICCI Health','NABL Labs','NMC Compliant','NABH Recognised','ISO 9001:2015']
+const certifications = ['Certified Staff', 'Experienced Therapists', 'Home Visits Only', 'Verified Professionals']
 
 export default function TrustedBy() {
   return (
